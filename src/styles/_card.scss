@@ -1,0 +1,31 @@
+.userCard {
+    background-color: $main-bg; 
+    padding: 2rem 0 2rem 0;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.userPhoto {
+    border-radius: 50%;
+    border: 6px solid $secondary-color;
+}
+
+.title {
+    padding: 0 0.5rem 0 0.5rem ;
+}
+
+.icon {
+    color: $tertiary-color;
+    font-size: 1.1rem;;
+}
+.userDetails {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    padding: 0.5rem 0 0.5rem 0;
+    p {
+        font-weight: 400;
+    }
+}
+
+
