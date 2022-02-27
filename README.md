@@ -1,4 +1,4 @@
-# Random Users Protfolio Test
+# Random Users Portfolio Test
 
 For this project I have initialised React from scratch in order to use only the useful dependencies and manage webpack.
 
