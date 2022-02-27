@@ -4,13 +4,9 @@ For this project I have initialised React from scratch in order to use only the 
 
 The app run on **localhost:3000**
 
-___
-
 ## Package manager
 
 - **npm**
-
-___
 
 ## Dependencies installed
 
@@ -33,8 +29,6 @@ ___
 - **@fortawesome/free-solid-svg-icons**
 - **@fortawesome/react-fontawesome**
 - **axios**
-
-___
 
 
 
