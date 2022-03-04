@@ -15,7 +15,7 @@ export const useFetchUserData = () => {
     const [data, setData] = useState([]);
     const [error, setError] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-
+ 
     useEffect(() => {
         const fetchData = async () => {
             try {

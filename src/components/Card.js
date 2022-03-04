@@ -1,5 +1,6 @@
 import React from 'react';
 import { useFetchUserData } from '../utils/hooks';
+import { userCardDetails } from '../utils/functions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { 
     faUser, 
@@ -12,38 +13,41 @@ import {
 
 const Card = () => {
   
-  const { data } = useFetchUserData();
+  // destructuring custom hook
+  const { isLoading, data, error } = useFetchUserData();
 
   return(
     <>
+    {isLoading ?  <h2 className='message'>Loading Data</h2> :
       <section className='cardSection'>
-        {/* Destructuring user data api response */}
-        {data.map((data) => {
-          const {
-            name: { first, last},
-            email,
-            dob: { date },
-            location: {
-              street: { number, name }
-            },
-            phone,
-            login: { uuid, username },
-            picture: { large }
+        {/* Destructuring function */}
+        {data.map((elem) => {
+         const {
+           firstName, 
+           lastName, 
+           email, 
+           dob, 
+           streetName, 
+           streetNumber, 
+           phone, 
+           loginUuid, 
+           loginUsername, 
+           picture
+          } = userCardDetails(elem)
 
-          } = data
-          return(
+          return(            
             <div className='userCard'
-                 key={uuid}
+                 key={loginUuid}
             >
               <img
                 className='userPhoto'
-                src={large}
-                alt={first}
+                src={picture}
+                alt={firstName}
               />
               <div className='userDetails'>
                   <FontAwesomeIcon className='icon' icon={faUser} />
                   <h3 className='title'>Name:</h3>
-                  <p className='userInfo'>{first} {last}</p>
+                  <p className='userInfo'>{firstName} {lastName}</p>
               </div>
               <div className='userDetails'>
                   <FontAwesomeIcon className='icon' icon={faEnvelope} />
@@ -53,12 +57,12 @@ const Card = () => {
               <div className='userDetails'>
                   <FontAwesomeIcon className='icon' icon={faCalendarDays} />
                   <h3 className='title'>Birthday:</h3>
-                  <p className='userInfo'>{date.substring(0, 10)}</p>
+                  <p className='userInfo'>{dob}</p>
               </div>
               <div className='userDetails'>
                   <FontAwesomeIcon className='icon' icon={faMapLocationDot} />
                   <h3 className='title'>Address:</h3>
-                  <p className='userInfo'>{number} {name}</p>
+                  <p className='userInfo'>{streetNumber} {streetName}</p>
               </div>
               <div className='userDetails'>
                   <FontAwesomeIcon className='icon' icon={faPhone} />
@@ -68,28 +72,18 @@ const Card = () => {
               <div className='userDetails'>
                   <FontAwesomeIcon className='icon' icon={faLock} />
                   <h3 className='title'>password:</h3>
-                  <p className='userInfo'>{username}</p>
+                  <p className='userInfo'>{loginUsername}</p>
               </div>
             </div>
           )
 
         })}
-
-      </section>
+      </section> }
+      {error && <h2 className='message'>{error}</h2>}
     </>
   )
 };
 
 export default Card;
 
-/*  <div className="UserCard">
-
-      <img className='userPhoto'
-      src={elem.picture.medium} 
-      key={index} 
-      alt="beautyful user profile picture" 
-      />
-      <h2 className='userName'>Name:</h2>
-    </div>
-  */
     
